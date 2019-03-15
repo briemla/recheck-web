@@ -49,7 +49,7 @@ function shouldIgnoreAttributeDifference(element, diff) {
 		return (Math.abs(diff.expected.replace("px", "")
 				- diff.actual.replace("px", "")) <= ALLOWED_PIXEL_DIFF);
 	}
-	if (diff.expected.indexOf("px") !== -1) {
+	if (diff.expected != null && diff.actual != null &&diff.expected.indexOf("px") !== -1) {
 		return (Math.abs(diff.expected.replace("px", "")
 				- diff.actual.replace("px", "")) <= ALLOWED_PIXEL_DIFF);
 	}
