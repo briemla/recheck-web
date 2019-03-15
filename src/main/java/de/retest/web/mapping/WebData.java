@@ -33,6 +33,10 @@ public class WebData {
 		this.wrappedData = wrappedData;
 	}
 
+	public WebData( final WebData webData ) {
+		wrappedData = webData.wrappedData;
+	}
+
 	/**
 	 * @param key
 	 *            the attribute key

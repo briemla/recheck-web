@@ -42,7 +42,7 @@ class PeerConverter {
 		idProvider.reset();
 		for ( final Entry<String, WebData> entry : mapping ) {
 			final String path = entry.getKey();
-			final WebData webData = entry.getValue();
+			final WebData webData = new WebData( entry.getValue() );
 			if ( WebDataFilter.shouldIgnore( webData ) ) {
 				continue;
 			}

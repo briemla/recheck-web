@@ -1,6 +1,8 @@
 var ALLOWED_PIXEL_DIFF = 5;
 var baseUrl = /http[s]?:\/\/[\w.:\d\-]*/;
-var fontFamilies = [ [ "system-ui", "Arial" ], [ "-apple-system", "sans-serif" ] ];
+var fontFamilies = [ [ "system-ui", "Arial" ],
+		[ "-apple-system", "sans-serif" ] ];
+var specialTags = [ "meta", "option", "title" ];
 
 function contains(array, key) {
 	for (var i = 0; i < array.length; i++) {
@@ -9,6 +11,24 @@ function contains(array, key) {
 		}
 	}
 	return false;
+}
+
+function shouldIgnoreElement(element) {
+	if (element.attributes.attributes["shown"] == "false"
+			&& shouldIgnoreAllChildren(element)
+			&& !contains(specialTags, element.identifyingAttributes["type"])) {
+		return true;
+	}
+	return false;
+}
+
+function shouldIgnoreAllChildren(element) {
+	for (var i = 0; i < element.containedElements.length; i++) {
+		if (!shouldIgnoreElement(element.containedElements[i])) {
+			return false;
+		}
+	}
+	return true;
 }
 
 function shouldIgnoreAttributeDifference(element, diff) {
