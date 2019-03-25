@@ -1,7 +1,7 @@
 package de.retest.web.it.websites;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,7 +15,7 @@ class ReweTest {
 	private WebDriver driver;
 	private Recheck re;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		// If ChromeDriver (http://chromedriver.chromium.org/downloads/) is not in your PATH, uncomment this and point to your installation.
 		// System.setProperty( "webdriver.chrome.driver", "path/to/chromedriver" );
@@ -41,7 +41,7 @@ class ReweTest {
 		re.startTest( "simple-showcase" );
 
 		// Do your Selenium stuff.
-		driver.get( "https://www.rewe.de/" );// http://www.shema-gruppe.de/
+		driver.get( "https://www.rewe.de/" );
 
 		Thread.sleep( 1000 );
 
@@ -51,7 +51,7 @@ class ReweTest {
 		re.capTest();
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() {
 		driver.quit();
 

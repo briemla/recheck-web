@@ -1,7 +1,7 @@
 package de.retest.web.it.websites;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,10 +11,11 @@ import de.retest.recheck.Recheck;
 import de.retest.recheck.RecheckImpl;
 
 class FacebookTest {
+
 	private WebDriver driver;
 	private Recheck re;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		// If ChromeDriver (http://chromedriver.chromium.org/downloads/) is not in your PATH, uncomment this and point to your installation.
 		// System.setProperty( "webdriver.chrome.driver", "path/to/chromedriver" );
@@ -41,6 +42,7 @@ class FacebookTest {
 
 		// Do your Selenium stuff.
 		driver.get( "https://www.facebook.com/" );
+
 		Thread.sleep( 1000 );
 
 		// Single call instead of multiple assertions (doesn't fail on differences).
@@ -50,7 +52,7 @@ class FacebookTest {
 		re.capTest();
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() {
 		driver.quit();
 
