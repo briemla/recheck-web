@@ -27,13 +27,10 @@ public class AutocheckingRecheckDriver extends RecheckDriver {
 		options = RecheckOptions.builder().build();
 	}
 
-	// TODO Use RecheckWebOptions
-	public AutocheckingRecheckDriver( final RemoteWebDriver wrapped, final RecheckOptions options,
-			final AutocheckingCheckNamingStrategy namingStrategy ) {
+	public AutocheckingRecheckDriver( final RemoteWebDriver wrapped, final RecheckOptions options ) {
 		super( wrapped );
 		this.options = options;
-		// TODO Incorporate AutocheckingCheckNamingStrategy into RecheckWebOptions
-		this.namingStrategy = namingStrategy; // options.getNamingStrategy();
+		namingStrategy = options.getNamingStrategy();
 	}
 
 	public void startTest() {
