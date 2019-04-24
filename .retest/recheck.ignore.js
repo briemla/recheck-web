@@ -1,7 +1,6 @@
 var ALLOWED_PIXEL_DIFF = 5;
 var baseUrl = /http[s]?:\/\/[\w.:\d\-]*/;
-var fontFamilies = [ [ "system-ui", "Arial" ],
-		[ "-apple-system", "sans-serif" ] ];
+var fontFamilies = [ [ "system-ui", "Arial" ], [ "-apple-system", "sans-serif" ] ];
 var specialTags = [ "meta", "option", "title" ];
 
 function contains(array, key) {
@@ -14,7 +13,7 @@ function contains(array, key) {
 }
 
 function shouldIgnoreElement(element) {
-	if (element.attributes.attributes["shown"] == "false"
+	if (element.attributes["attributes"]["shown"] == "false"
 			&& shouldIgnoreAllChildren(element)
 			&& !contains(specialTags, element.identifyingAttributes["type"])) {
 		return true;

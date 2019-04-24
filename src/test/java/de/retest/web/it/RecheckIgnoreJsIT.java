@@ -8,6 +8,10 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -86,7 +90,13 @@ class RecheckIgnoreJsIT {
 	@Test
 	void should_not_ignore_visible_elements() throws Exception {
 		final Element element = createElement( "a", true );
-		assertThat( cut.matches( element ) ).isFalse();
+		final ScriptEngineManager manager = new ScriptEngineManager();
+		final ScriptEngine engine = manager.getEngineByName( "JavaScript" );
+		engine.eval( "function toString(element) { return element.attributes; }" );
+		final Invocable inv = (Invocable) engine;
+		System.out.println( inv.invokeFunction( "toString", element ) );
+
+		//		assertThat( cut.shouldIgnoreElement( element ) ).isFalse();
 	}
 
 	//	@ParameterizedTest
